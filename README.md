@@ -96,6 +96,7 @@ xhost +
 
 **SSH inside the container**
 
+Default username and password is root
 ```
 ssh -X voice
 ```
