@@ -53,7 +53,7 @@ yay -S nvidia-container-toolkit
 ### Set up SSH config on the host machine
 
 #### NOTE: you need to set X11Forwarding to yes in /etc/ssh/sshd_config on the docker host as well and 
-Add the following to your SSH config at ~/.ssh/config on the docker host (or create the file if it doesn’t exists):
+Add the following to your SSH config at `~/.ssh/config` on the docker host (or create the file if it doesn’t exists):
 
 ```
 Host voice
