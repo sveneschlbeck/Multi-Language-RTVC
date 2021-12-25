@@ -104,6 +104,8 @@ ssh -X voice
 **Run the apps as usual**
 
 ```
+export DISPLAY=:0
+
 cd /workspace/Multi-Language-RTVC/mlrtvc/src
 python mlrtvc_toolbox.py
 ```
