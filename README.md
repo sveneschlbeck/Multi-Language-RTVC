@@ -79,6 +79,7 @@ docker build -t racoon-bse .
 
 ```
 docker run -it --rm --init --gpus=all \
+        --privileged \
         -e DISPLAY=${DISPLAY} \
         --ipc=host --volume="$PWD:/workspace" \
         -e NVIDIA_VISIBLE_DEVICES=0 -p 2150:22 \
