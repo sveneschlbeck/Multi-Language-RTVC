@@ -36,6 +36,8 @@ class HParams(object):
 
 
 hparams = HParams(
+    # Language selection
+    default_language="en_US",
     # Signal Processing (used in both ``synthesizer`` and ``vocoder``)
     sample_rate=16000,
     n_fft=800,
