@@ -101,6 +101,7 @@ for an Open Source project like ``MLRTVC``. For further information see [here](h
 
 - Stack Overflow: https://stackoverflow.com/questions/tagged/mlrtvc
 - GitHub Discussions: https://github.com/sveneschlbeck/Multi-Language-RTVC/discussions
+- Discord: https://discord.gg/asym7axdgd
 
 ### Citation
 
