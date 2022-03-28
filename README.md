@@ -36,6 +36,83 @@ For more information on...
 
 for both ``Windows`` and ``Linux``, visit our [Installation & Setup Wiki](https://github.com/sveneschlbeck/Multi-Language-RTVC/wiki/Installation-&-Setup).
 
+## Using Docker
+
+**Make sure you have docker and nvidia-container-toolkit installed**
+
+```
+## To install nvidia-container-toolkit
+
+# For ubuntu
+sudo apt install -y nvidia-docker2
+
+# For arch linux
+yay -S nvidia-container-toolkit
+```
+
+### Set up SSH config on the host machine
+
+#### NOTE: you need to set X11Forwarding to yes in /etc/ssh/sshd_config on the docker host as well and 
+Add the following to your SSH config at `~/.ssh/config` on the docker host (or create the file if it doesn’t exists):
+
+```
+Host voice
+    Hostname localhost
+    Port 2150
+    User root
+    ForwardX11 yes
+    ForwardX11Trusted yes
+```
+
+
+**Keep the Dockerfile outside the main directory like below**
+
+![tree structure](https://user-images.githubusercontent.com/6279035/147375101-4b2df8fe-8d83-4c7f-bd91-7db60ded0abc.png)
+
+**Build the docker image**
+
+```
+docker build -t racoon-bse . 
+```
+
+**Run the Docker Container**
+
+```
+docker run -it --rm --init --gpus=all \
+        --privileged \
+        -e DISPLAY=${DISPLAY} \
+        --ipc=host --volume="$PWD:/workspace" \
+        -e NVIDIA_VISIBLE_DEVICES=0 -p 2150:22 \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        --device /dev/snd racoon-bse
+```
+
+**Keep the docker run tab open, and use a new window for the steps below**
+
+**Allow the connection to the X server**
+
+```
+xhost + 
+```
+
+**SSH inside the container**
+
+Default username and password is root
+```
+ssh -X voice
+```
+
+**Run the apps as usual**
+
+```
+export DISPLAY=:0
+
+cd /workspace/Multi-Language-RTVC/mlrtvc/src
+python mlrtvc_toolbox.py
+```
+
+---
+
 ## License
 
 This code is licensed under ``MIT``. For more information regarding the license model or
